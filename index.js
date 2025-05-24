@@ -65,6 +65,44 @@ app.delete("/shareTip/:id", async (req, res) => {
   }
 });
 
+app.get("/shareTip/:id", async (req, res) => {
+  try {
+    const id = req.params.id; 
+    const query = {_id: new ObjectId(id)}
+    const result = await shareTipData.findOne(query);
+    res.send(result);
+  } catch (error) {
+    res.status(500).send({ error: "Failed to delete tip" });
+  }
+});
+
+    app.put("/shareTip/:id", async (req, res) => {
+      const { id } = req.params;
+      const {availability ,category,photoUrl,description,level,planttype,title} = req.body
+      const query = { _id: new ObjectId(id) }
+      const updateData = {
+        $set: {
+          
+          title: title,
+          availability: availability,
+          category: category,
+          photoUrl : photoUrl,
+          description: description,
+          level: level,
+          planttype : planttype
+        
+      }
+      }
+      
+      const result = await shareTipData.updateOne(query, updateData);
+      res.send(result)
+
+      
+
+
+
+    })
+
 
     app.get("/activeGardener", async (req, res) => {
       try {
