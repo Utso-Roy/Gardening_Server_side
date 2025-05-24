@@ -22,8 +22,8 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    await client.connect();
-    console.log("✅ Connected to MongoDB");
+    // await client.connect();
+    // console.log("✅ Connected to MongoDB");
 
     const userFromData = client.db("userFromData").collection("user");
     const gardenersData = client
@@ -128,7 +128,7 @@ app.get("/shareTip/:id", async (req, res) => {
       }
     });
   } catch (error) {
-    console.error("MongoDB connection failed:", error);
+    // console.error("MongoDB connection failed:", error);
   }
 }
 
